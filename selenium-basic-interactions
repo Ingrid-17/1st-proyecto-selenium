@@ -1,0 +1,42 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        WebDriver driver = new ChromeDriver();
+
+        try {
+            // 1. Maximize the window to see the elements properly.
+            driver.manage().window().maximize();
+
+            // 2. Navigate to the SauceDemo trial page
+            driver.get("https://www.saucedemo.com/");
+
+            // 3. Find the user field using the name attribute
+            WebElement txtUsuario = driver.findElement(By.name("user-name"));
+            txtUsuario.sendKeys("standard_user");
+
+            // 4. Find the password field using your 'name' and type it in there
+            WebElement txtPassword = driver.findElement(By.name("password"));
+            txtPassword.sendKeys("secret_sauce");
+
+            // 5.Find the Login button using your 'id' and click it
+            WebElement btnLogin = driver.findElement(By.id("login-button"));
+            btnLogin.click();
+
+            // 3-second pause
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+          
+            driver.quit();
+        }
+    }
+}
+}
